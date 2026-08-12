@@ -3,24 +3,87 @@
 let produtos = JSON.parse(localStorage.getItem('db_produtos')) || [
     { 
         id: 1, 
-        nome: "Madeira Brasa Clássico", 
+        nome: "Madeira Clássico", 
         descricao: "Hambúrguer artesanal 180g assado na brasa, queijo cheddar fatiado, cebola caramelizada no pão brioche selado.", 
-        preco: 28.90, 
-        imagem: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" 
+        preco: 24.90, 
+        imagem: "assets/imagens/madeira-classico.jpg" 
     },
     { 
         id: 2, 
         nome: "Bacon Defumado Supremo", 
         descricao: "Hambúrguer 180g na brasa, fatias generosas de bacon defumado na lenha de frutífera, queijo prato e maionese defumada.", 
         preco: 34.90, 
-        imagem: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=500&q=80" 
+        imagem: "assets/imagens/bacon-supremo-defumado.jpeg" 
     },
     { 
         id: 3, 
         nome: "Costela na Lenha", 
         descricao: "Blend especial de costela 200g, queijo provolone derretido, picles artesanal e molho barbecue de madeira defumada.", 
         preco: 38.90, 
-        imagem: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=500&q=80" 
+        imagem: "assets/imagens/costela-na-lenha.jpg" 
+    },
+    { 
+        id: 4, 
+        nome: "Bacon Crocante", 
+        descricao: "Blend bovino 180g, generosas fatias de bacon crocante, queijo cheddar fatiado e maionese verde da casa no pão brioche.", 
+        preco: 32.90, 
+        imagem: "assets/imagens/bacon.png" 
+    },
+    { 
+        id: 5, 
+        nome: "Olimpo Grego", 
+        descricao: "Blend de carneiro com especiarias 180g, queijo feta, tomate, cebola roxa, alface americana e molho tzatziki no pão com gergelim.", 
+        preco: 36.90, 
+        imagem: "assets/imagens/grego-tradicional.png" 
+    },
+     { 
+        id: 7, 
+        nome: "Monstro da Brasa", 
+        descricao: "Dois blends de 150g, queijo cheddar, bacon, ovo frito, presunto, alface, tomate, milho, batata palha e maionese especial.", 
+        preco: 44.90, 
+        imagem: "assets/imagens/hamburguer-tudao.jpg" 
+    },
+    { 
+        id: 8, 
+        nome: "Tropical Caramelizado", 
+        descricao: "Blend bovino 180g, queijo coalho grelhado, fatia de abacaxi caramelizado, bacon e maionese de pimenta doce no pão australiano.", 
+        preco: 35.90, 
+        imagem: "assets/imagens/hamburguer-tropical.jpg" 
+    },
+    { 
+        id: 6, 
+        nome: "Combo Madeira do Chef", 
+        descricao: "Cheeseburger tradicional (blend 150g e queijo prato), acompanhado de batata frita média crocante e refrigerante lata 350ml.", 
+        preco: 42.90, 
+        imagem: "assets/imagens/combo-classico.jpg" 
+    },
+     { 
+        id: 9, 
+        nome: "Refrigerante Gelado 350ml", 
+        descricao: "Lata de 350ml trincando de gelada. Escolha entre Coca-Cola, Guaraná Antarctica ou Fanta Laranja.", 
+        preco: 6.50, 
+        imagem: "assets/imagens/refrigerante-lata.jpg" 
+    },
+    { 
+        id: 10, 
+        nome: "Suco Natural da Fruta 500ml", 
+        descricao: "Suco 100% natural de laranja espremido na hora, sem adição de açúcares ou conservantes.", 
+        preco: 9.90, 
+        imagem: "assets/imagens/suco-laranja.jpeg" 
+    },
+     { 
+        id: 11, 
+        nome: "Shake de Avelã Premium", 
+        descricao: "Cremoso milkshake feito com sorvete artesanal de baunilha, Nutella pura e chantilly.", 
+        preco: 18.90, 
+        imagem: "assets/imagens/milkshake-nutella.jpg" 
+    },
+    { 
+        id: 12, 
+        nome: "IPA Lúpulo Artesanal 500ml", 
+        descricao: "Cerveja artesanal estilo IPA, amargor equilibrado e notas cítricas. Perfeita para harmonizar com hambúrgueres.", 
+        preco: 22.00, 
+        imagem: "assets/imagens/cerveja-ipa.jpg" 
     }
 ];
 
