@@ -474,7 +474,7 @@ function renderizarAdmin() {
 document.getElementById('checkout-btn')?.addEventListener('click', () => {
     if (carrinho.length === 0) return alert('Seu carrinho está vazio!');
 
-    let msg = "🔥 *NOVO PEDIDO - HAMBÚRGUER DO MADEIRA* 🔥\n_No brasa, mais sabor!_\n\n";
+    let msg = "🔥 *NOVO PEDIDO - HAMBÚRGUER DO MADEIRA* 🔥\n_O melhor de Porto Velho!_\n\n";
 
     if (usuario) {
         msg += `*Cliente:* ${usuario.nome}\n`;
