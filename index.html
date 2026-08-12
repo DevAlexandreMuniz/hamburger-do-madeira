@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hambúrguer do Madeira - No brasa, mais sabor!</title>
+    
+    <!-- Bibliotecas Externas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <!-- CSS do Projeto -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO DA MARCA -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                <div class="logo-text">
+                    HAMBÚRGUER DO MADEIRA
+                    <span>NO BRASA, MAIS SABOR!</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <span id="user-display" style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Visitante</span>
+                <button class="nav-btn" id="open-login-btn" title="Perfil / Login"><i class="fa-solid fa-user"></i></button>
+                <button class="nav-btn" id="open-cart-btn" title="Carrinho">
+                    <i class="fa-solid fa-fire"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU DE ABAS -->
+    <nav class="tab-menu container">
+        <button class="tab-btn active" onclick="switchTab('tab-cardapio', this)"><i class="fa-solid fa-utensils"></i> Cardápio na Brasa</button>
+        <button class="tab-btn" onclick="switchTab('tab-favoritos', this)"><i class="fa-solid fa-heart"></i> Favoritos</button>
+        <button class="tab-btn" onclick="switchTab('tab-feedbacks', this)"><i class="fa-solid fa-comments"></i> Avaliações</button>
+        <button class="tab-btn" id="tab-admin-btn" style="display: none;" onclick="switchTab('tab-admin', this)"><i class="fa-solid fa-user-shield"></i> Painel Admin</button>
+    </nav>
+
+    <main class="container">
+        <!-- BANNER HERO -->
+        <section class="hero">
+            <h1>Hambúrguer do Madeira</h1>
+            <p>No brasa, mais sabor!</p>
+        </section>
+
+        <!-- ABA 1: CARDÁPIO -->
+        <section id="tab-cardapio" class="tab-content active">
+            <h2 class="section-title">Nosso Cardápio Artesanal</h2>
+            <div class="menu-grid" id="menu-container"></div>
+        </section>
+
+        <!-- ABA 2: FAVORITOS -->
+        <section id="tab-favoritos" class="tab-content">
+            <h2 class="section-title">Seus Lanches Favoritos</h2>
+            <div class="menu-grid" id="favoritos-container"></div>
+        </section>
+
+        <!-- ABA 3: FEEDBACKS / AVALIAÇÕES -->
+        <section id="tab-feedbacks" class="tab-content">
+            <h2 class="section-title">Avaliações dos Clientes</h2>
+            <div class="card-box">
+                <h3>Deixe sua Avaliação</h3>
+                <form id="feedback-form" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label>Lanche:</label>
+                        <select id="fb-lanche-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nota (Estrelas):</label>
+                        <select id="fb-nota" required>
+                            <option value="5">⭐⭐⭐⭐⭐ (5/5 - Excelente)</option>
+                            <option value="4">⭐⭐⭐⭐ (4/5 - Muito Bom)</option>
+                            <option value="3">⭐⭐⭐ (3/5 - Bom)</option>
+                            <option value="2">⭐⭐ (2/5 - Regular)</option>
+                            <option value="1">⭐ (1/5 - Ruim)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Comentário:</label>
+                        <textarea id="fb-comentario" rows="3" required placeholder="O que achou do sabor do nosso lanche na brasa?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Enviar Avaliação</button>
+                </form>
+            </div>
+            <div id="feedbacks-container" style="max-width: 650px; margin: 0 auto;"></div>
+        </section>
+
+        <!-- ABA 4: PAINEL DO ADMINISTRADOR -->
+        <section id="tab-admin" class="tab-content">
+            <h2 class="section-title">Painel Administrativo</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Vendas no Mês</h4>
+                    <h3 id="admin-vendas-qtd">0</h3>
+                </div>
+                <div class="metric-card">
+                    <h4>Faturamento Mensal</h4>
+                    <h3 id="admin-vendas-total">R$ 0,00</h3>
+                </div>
+            </div>
+
+            <div class="card-box" style="max-width: 800px;">
+                <h3>Gerenciar Cardápio (Adicionar Lanche)</h3>
+                <form id="product-form" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label>Nome do Lanche:</label>
+                        <input type="text" id="prod-nome" required placeholder="Ex: Madeira Defumado Super">
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição:</label>
+                        <textarea id="prod-desc" rows="2" required placeholder="Ingredientes, gramatura, molhos..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Preço (R$):</label>
+                        <input type="number" step="0.01" id="prod-preco" required placeholder="32.90">
+                    </div>
+
+                    <!-- OPÇÃO DUPLA: URL DA IMAGEM OU ARQUIVO DO COMPUTADOR -->
+                    <div class="form-group">
+                        <label>Imagem do Lanche (URL da Web ou do Computador):</label>
+                        <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+                            <label style="cursor: pointer; font-size: 0.85rem; color: var(--text-light); font-weight: 600;">
+                                <input type="radio" name="img-source-type" value="url" checked onclick="toggleImageSource('url')"> Via URL
+                            </label>
+                            <label style="cursor: pointer; font-size: 0.85rem; color: var(--text-light); font-weight: 600;">
+                                <input type="radio" name="img-source-type" value="file" onclick="toggleImageSource('file')"> Arquivo do Computador
+                            </label>
+                        </div>
+
+                        <!-- Opção 1: URL -->
+                        <div id="img-url-box">
+                            <input type="url" id="prod-img" placeholder="https://exemplo.com/imagem.jpg">
+                        </div>
+
+                        <!-- Opção 2: Upload de Arquivo -->
+                        <div id="img-file-box" style="display: none;">
+                            <input type="file" id="prod-img-file" accept="image/*" style="padding: 8px; cursor: pointer;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Cadastrar Lanche</button>
+                </form>
+            </div>
+
+            <div class="card-box" style="max-width: 800px;">
+                <h3>Itens Atuais do Cardápio</h3>
+                <div id="admin-products-list" style="margin-top: 15px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CARRINHO LATERAL -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Seu Pedido</h3>
+            <button class="nav-btn" id="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.3rem; margin-bottom:18px; color: var(--text-light);">
+                <span>Total:</span>
+                <span id="cart-total-price" style="color: var(--secondary-color);">R$ 0,00</span>
+            </div>
+            <button class="btn-primary" id="checkout-btn" style="width:100%; background-color:#2ed573; color:#1a0e08; font-weight:800;">
+                <i class="fa-brands fa-whatsapp"></i> Finalizar via WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- MODAL DE LOGIN / PERFIL DO CLIENTE -->
+    <div class="cart-overlay" id="login-overlay"></div>
+    <div class="card-box" id="login-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:202; width:95%; max-width:480px; max-height: 90vh; overflow-y: auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid var(--wood-light); padding-bottom: 10px;">
+            <h3 id="modal-title" style="margin: 0; border: none;">Acessar Conta</h3>
+            <button class="nav-btn" id="close-login-btn">&times;</button>
+        </div>
+        
+        <div id="auth-forms">
+            <div class="form-group">
+                <label>Tipo de Perfil:</label>
+                <select id="login-type">
+                    <option value="cliente">Cliente</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" id="login-nome" placeholder="Seu nome completo">
+            </div>
+
+            <div id="address-group">
+                <hr style="margin: 18px 0; border: 0; border-top: 1px solid var(--wood-light);">
+                <h4 style="margin-bottom: 12px; color: var(--secondary-color); font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 1px;">
+                    <i class="fa-solid fa-location-dot"></i> Endereço de Entrega
+                </h4>
+                <div class="form-group">
+                    <label>CEP:</label>
+                    <input type="text" id="end-cep" placeholder="00000-000" maxlength="9">
+                    <div id="cep-status" class="cep-loading">Buscando endereço...</div>
+                </div>
+                <div class="form-group">
+                    <label>Rua / Logradouro:</label>
+                    <input type="text" id="end-rua" placeholder="Rua, Avenida, etc.">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número:</label>
+                        <input type="text" id="end-numero" placeholder="123">
+                    </div>
+                    <div class="form-group">
+                        <label>Complemento:</label>
+                        <input type="text" id="end-complemento" placeholder="Apt, Bloco">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Bairro:</label>
+                    <input type="text" id="end-bairro" placeholder="Bairro">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cidade:</label>
+                        <input type="text" id="end-cidade" placeholder="Cidade">
+                    </div>
+                    <div class="form-group" style="max-width: 100px;">
+                        <label>UF:</label>
+                        <input type="text" id="end-uf" placeholder="RO" maxlength="2">
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary" id="save-login-btn" style="width:100%; margin-top: 10px;">Entrar / Salvar Perfil</button>
+        </div>
+
+        <div id="user-profile-info" style="display:none;">
+            <p style="margin-bottom: 10px;"><strong>Usuário:</strong> <span id="prof-nome"></span></p>
+            <p style="margin-bottom: 10px;"><strong>Perfil:</strong> <span id="prof-tipo"></span></p>
+            <p style="margin-bottom: 18px;" id="prof-end-box"><strong>Endereço:</strong> <br><span id="prof-endereco" style="color: var(--text-muted);"></span></p>
+            <button class="btn-primary" id="logout-btn" style="width:100%; background-color: var(--primary-color);">Sair</button>
+        </div>
+    </div>
+
+    <!-- Scripts do Projeto -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
