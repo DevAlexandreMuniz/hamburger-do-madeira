@@ -498,7 +498,7 @@ document.getElementById('checkout-btn')?.addEventListener('click', () => {
     atualizarCarrinho();
     fecharCarrinho();
 
-    const fone = "5500000000000"; // Insira seu número com DDD
+    const fone = "5569999805404"; // Insira seu número com DDD
     window.open(`https://wa.me/${fone}?text=${encodeURIComponent(msg)}`, '_blank');
 });
 
